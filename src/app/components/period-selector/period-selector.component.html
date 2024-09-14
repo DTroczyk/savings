@@ -1,30 +1,35 @@
-<div class="selectors">
-  <mat-form-field>
-    <mat-label>Year</mat-label>
-    <mat-select>
-      <mat-option>-- All --</mat-option>
-      <mat-option>2024</mat-option>
-      <mat-option>2023</mat-option>
-      <mat-option>2022</mat-option>
-      <mat-option>2021</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Month</mat-label>
-    <mat-select>
-      <mat-option>-- All --</mat-option>
-      <mat-option>January</mat-option>
-      <mat-option>February</mat-option>
-      <mat-option>March</mat-option>
-      <mat-option>April</mat-option>
-      <mat-option>May</mat-option>
-      <mat-option>June</mat-option>
-      <mat-option>July</mat-option>
-      <mat-option>August</mat-option>
-      <mat-option>September</mat-option>
-      <mat-option>October</mat-option>
-      <mat-option>November</mat-option>
-      <mat-option>December</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="selectors container">
+  <div class="row">
+    <mat-form-field class="col">
+      <mat-label>Mode</mat-label>
+      <mat-select [value]="mode" #selectedMode>
+        <mat-option value="month">Month</mat-option>
+        <mat-option value="year">Year</mat-option>
+        <mat-option value="period">Period (In Progress)</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      *ngIf="selectedMode.value == 'month' || selectedMode.value == 'year'"
+      class="col"
+    >
+      <mat-label>Year</mat-label>
+      <mat-select [value]="year">
+        <mat-option *ngIf="selectedMode.value == 'year'" value="all"
+          >-- All --</mat-option
+        >
+        <mat-option *ngFor="let year of YEARS" [value]="year">{{
+          year
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selectedMode.value == 'month'" class="col">
+      <mat-label>Month</mat-label>
+      <mat-select [value]="month">
+        <mat-option value="all">-- All --</mat-option>
+        <mat-option *ngFor="let month of MONTHS" [value]="month.month">{{
+          month.monthName
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>
