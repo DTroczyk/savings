@@ -14,10 +14,12 @@ export class PeriodSelectorComponent {
   public MONTHS = MONTHS;
   public YEARS: number[] = [];
 
+  private MAX_PAST_YEAR_RANGE = 5;
+
   constructor() {
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < this.MAX_PAST_YEAR_RANGE; index++) {
       this.YEARS.push(this.year - index);
     }
     this.month = currentDate.getMonth() + 1;
