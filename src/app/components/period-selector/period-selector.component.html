@@ -1,0 +1,35 @@
+<div class="selectors container">
+  <div class="row">
+    <mat-form-field class="col">
+      <mat-label>Mode</mat-label>
+      <mat-select [value]="mode" #selectedMode>
+        <mat-option value="month">Month</mat-option>
+        <mat-option value="year">Year</mat-option>
+        <mat-option value="period">Period (In Progress)</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      *ngIf="selectedMode.value == 'month' || selectedMode.value == 'year'"
+      class="col"
+    >
+      <mat-label>Year</mat-label>
+      <mat-select [value]="year">
+        <mat-option *ngIf="selectedMode.value == 'year'" value="all"
+          >-- All --</mat-option
+        >
+        <mat-option *ngFor="let year of YEARS" [value]="year">{{
+          year
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selectedMode.value == 'month'" class="col">
+      <mat-label>Month</mat-label>
+      <mat-select [value]="month">
+        <mat-option value="all">-- All --</mat-option>
+        <mat-option *ngFor="let month of MONTHS" [value]="month.month">{{
+          month.monthName
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
