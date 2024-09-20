@@ -1,8 +1,9 @@
+import { registerLocaleData } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import localePl from '@angular/common/locales/pl';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { registerLocaleData } from '@angular/common';
-import localePl from '@angular/common/locales/pl';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
@@ -28,6 +29,7 @@ registerLocaleData(localePl);
   imports: [BrowserModule, AppRoutingModule, AngularMaterialModule],
   providers: [
     provideAnimationsAsync(),
+    provideHttpClient(),
     {
       provide: LOCALE_ID,
       useValue: 'pl',
