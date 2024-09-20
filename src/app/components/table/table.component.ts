@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,7 +20,7 @@ import { TABLE_COLUMNS } from './table-columns';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
 
   public displayedColumns = TABLE_COLUMNS;
@@ -34,5 +40,9 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }
