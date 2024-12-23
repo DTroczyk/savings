@@ -14,6 +14,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { PeriodSelectorComponent } from './components/period-selector/period-selector.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TableComponent } from './components/table/table.component';
+import { ActionsComponent } from './components/actions/actions.component';
 
 registerLocaleData(localePl);
 
@@ -25,6 +26,7 @@ registerLocaleData(localePl);
     PeriodSelectorComponent,
     TableComponent,
     MainPageComponent,
+    ActionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, AngularMaterialModule],
   providers: [
